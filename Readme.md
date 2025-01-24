@@ -26,10 +26,10 @@
 Il progetto utilizza Docker e PostgreSQL, quindi dovrai configurare il file .env con le seguenti variabili:
 
    ```bash
-   POSTGRES_VERSION=12
-   POSTGRES_DB=neom_db
+   POSTGRES_VERSION=16
+   POSTGRES_DB=neom
    POSTGRES_USER=neom_user
-   POSTGRES_PASSWORD=yourpassword
+   POSTGRES_PASSWORD=neom_password
    DATABASE_URL="pgsql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@postgres:5432/{POSTGRES_DB}"
    ```
 
