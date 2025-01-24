@@ -53,20 +53,18 @@ Una volta avviato il container, accedi al container PHP:
 
    ```bash
    docker exec -it neom_php bash
-   ```
-
-All'interno del container, esegui:
-
-   ```bash
    composer install
    ```
 
-5. **Crea le tabelle del database:**
+5. **Crea le entità e la migrazione:**
 
 Dopo aver configurato il database, puoi creare le tabelle tramite Doctrine:
 
    ```bash
-   php bin/console doctrine:schema:create
+   docker-compose exec php bash
+   bin/console make:entity
+   bin/console make:migration
+   bin/console doctrine:migrations:migrate
    ```
 
 6. **Accedi al progetto:**
