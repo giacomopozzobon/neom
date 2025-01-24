@@ -20,8 +20,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: "php -S 0.0.0.0:8000 -t public"
+    ports:
+      - "8000:8000"
     volumes:
       - ~/neom:/var/www/html:rw,cached  # Volume per la sincronizzazione del progetto locale con il container
+
     # Installazione delle estensioni PHP e configurazione per PostgreSQL
     environment:
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1 # Evita il recompilamento continuo
