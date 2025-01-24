@@ -57,14 +57,13 @@ Una volta avviato il container, accedi al container PHP e installa Composer e le
    npm install
    ```
 
-5. **Crea le entità e la migrazione:**
+5. **Crea il database e lancia le migrazioni:**
 
 Dopo aver configurato il database, puoi creare le tabelle tramite Doctrine:
 
    ```bash
    docker-compose exec php bash
-   bin/console make:entity
-   bin/console make:migration
+   bin/console doctrine:database:create
    bin/console doctrine:migrations:migrate
    ```
 
