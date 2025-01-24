@@ -74,7 +74,7 @@ Dopo aver configurato il database, puoi creare le tabelle tramite Doctrine:
 Il progetto Symfony dovrebbe essere ora attivo. Puoi accedere all'applicazione tramite il tuo browser:
 
    ```bash
-   http://localhost
+   http://localhost:8000
    ```
 Il progetto sarà in esecuzione sul server PHP all'interno del container.
 
