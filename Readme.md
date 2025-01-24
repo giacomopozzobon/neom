@@ -30,7 +30,7 @@ Il progetto utilizza Docker e PostgreSQL, quindi dovrai configurare il file .env
    POSTGRES_DB=neom_db
    POSTGRES_USER=neom_user
    POSTGRES_PASSWORD=yourpassword
-   DATABASE_URL="pgsql://neom_user:yourpassword@postgres:5432/neom_db"
+   DATABASE_URL="pgsql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@postgres:5432/{POSTGRES_DB}"
    ```
 
 3. **Avvia i container Docker:**
