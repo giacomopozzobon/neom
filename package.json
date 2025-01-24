@@ -1,0 +1,35 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "**NEOM** è un sistema di gestione ordini e prodotti, sviluppato in Symfony, utilizzando Docker per la gestione dell'ambiente e PostgreSQL come database.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giacomopozzobon/neom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giacomopozzobon/neom/issues"
+  },
+  "homepage": "https://github.com/giacomopozzobon/neom#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^5.0.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-notifier": "^1.15.0"
+  }
+}

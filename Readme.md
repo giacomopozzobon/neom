@@ -49,11 +49,12 @@ Questo avvierà i seguenti servizi:
 
 4. **Installa le dipendenze PHP:**
 
-Una volta avviato il container, accedi al container PHP:
+Una volta avviato il container, accedi al container PHP e installa Composer e le varie dipendenze Javascript:
 
    ```bash
-   docker exec -it neom_php bash
+   docker-compose exec php bash
    composer install
+   npm install
    ```
 
 5. **Crea le entità e la migrazione:**
@@ -67,9 +68,33 @@ Dopo aver configurato il database, puoi creare le tabelle tramite Doctrine:
    bin/console doctrine:migrations:migrate
    ```
 
-6. **Accedi al progetto:**
+5.5 **Riavviamo il progetto:**
+Per questo progetto sono stati creati due script appositi per avviare e fermare l'applicativo comodamente.
+Assicurati prima di aver eseguito:
 
-Il progetto Symfony dovrebbe essere ora attivo. Puoi accedere all'applicazione tramite il tuo browser:
+    ```bash
+    docker-compose down
+    ```
+
+6. **Accedi al progetto:**
+I due script creati per avviare/fermare il progetto sono:
+- **neom.sh** : Avvia l'applicazione (docker-compose up -d && docker-compose exec php npm run dev)
+- **neom-stop.sh** : Blocca l'applicazione (docker-compose down)
+Assicurati di renderli eseguibili:
+
+    ```bash
+    chmod +x neom.sh
+    chmod +x neom-stop.sh
+    ```
+
+Prova ad avviare e fermare l'applicativo con i seguenti comandi:
+
+    ```bash
+    ./neom.sh
+    ./neom-stop.sh
+    ```
+
+Puoi accedere all'applicazione tramite il tuo browser:
 
    ```bash
    http://localhost:8000
