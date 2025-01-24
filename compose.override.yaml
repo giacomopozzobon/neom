@@ -1,6 +1,6 @@
 services:
   ###> doctrine/doctrine-bundle ###
-  database:
+  postgres:
     ports:
       - "5432"
   ###< doctrine/doctrine-bundle ###
@@ -31,4 +31,4 @@ services:
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1 # Evita il recompilamento continuo
     working_dir: /var/www/html  # Directory di lavoro all'interno del container
     depends_on:
-      - database  # Il servizio PHP dipende dal database, assicurandosi che il database sia disponibile prima di avviare il PHP
+      - postgres  # Il servizio PHP dipende dal database, assicurandosi che il database sia disponibile prima di avviare il PHP
