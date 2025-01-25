@@ -1,32 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Order List{% endblock %}
+{% block title %}Orders{% endblock %}
 
 {% block body %}
-  <h1>Orders</h1>
 
-  {% if orders is not empty %}
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for order in orders %}
-          <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.name }}</td>
-            <td>{{ order.description }}</td>
-            <td>{{ order.date|date('Y-m-d H:i') }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>Nessun ordine presente a database.</p>
-  {% endif %}
+  <div class="row">
+    <div class="col-12">
+
+
+      <div class="row">
+        <div class="col-6">
+          <h1>Orders</h1>
+        </div>
+        <div class="col-6 text-end">
+          {# <a href="{{ path('order_new') }}" class="btn btn-primary">Create New Order</a> #}
+          Create a new order
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-12">
+
+
+
+      {% if orders is not empty %}
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.description }}</td>
+                <td>{{ order.date|date('Y-m-d H:i') }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="text-muted"><i>No orders found. Please check back later or create a new order.</i></p>
+      {% endif %}
+
+
+
+    </div>
 {% endblock %}
