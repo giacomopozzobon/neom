@@ -5,17 +5,84 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
-    {{ importmap('app') }}
-  </head>
-  <body class="d-flex">
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+      <script src="{{ asset('build/app.js') }}"></script>
+    {% endblock %}
+  </head>  
+
+  <body>
+  
+    <!--        Header          -->
     {% include '_header.html.twig' %}
 
-    <div class="d-flex w-100">
-      {% include '_sidebar.html.twig' %}
+    <div class="container-fluid bg-light">
+      <div class="row">
 
-      <main class="flex-grow-1 p-4">
-        {% block body %}{% endblock %}
-      </main>
+        <!--        Sidebar         -->
+        {% include '_sidebar.html.twig' %}
+
+
+        <!--        Main         -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="container mt-4">
+
+            {% for label, messages in app.flashes %}
+              <div class="alert alert-{{ label }}">
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
+              </div>
+            {% endfor %}
+            
+            
+            {% block body %}{% endblock %}
+
+            
+          </div>
+        </main>
+
+
+
+      </div>
     </div>
   </body>
+
+
+
+
+
+
+
+
+
+  {# <body>
+
+    <div class="container">
+
+        
+        {% include '_header.html.twig' %}
+
+
+
+        <!-- Main -->
+        <main class="d-flex" style="height: 100vh;">
+
+          <!-- Menu Laterale -->
+          {% include '_sidebar.html.twig' %}
+
+
+          <!-- Corpo principale -->
+          <div class="flex-grow-1 d-flex flex-column p-4 bg-light">
+            {% block body %}{% endblock %}
+          </div>
+
+        </main>
+    
+    
+    </div>
+  </body> #}
 </html>

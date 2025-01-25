@@ -7,67 +7,90 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
-    // only needed for CDN's or subdirectory deploy
-    //.setManifestKeyPrefix('build/')
+  // directory where compiled assets will be stored
+  .setOutputPath('public/build/')
+  // public path used by the web server to access the output path
+  .setPublicPath('/build')
+  // only needed for CDN's or subdirectory deploy
+  //.setManifestKeyPrefix('build/')
 
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
-    .addEntry('app', './assets/app.js')
+  /*
+    * ENTRY CONFIG
+    *
+    * Each entry will result in one JavaScript file (e.g. app.js)
+    * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+  */
+  .addEntry('app', './assets/app.js')
+  .enableSassLoader()
+  .enablePostCssLoader()
 
-    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+  // Aggiungi questa regola per i font se non l'hai già fatto
+  .addRule({
+    test: /\.(woff2?|eot|ttf|otf)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash:8].[ext]',
+          outputPath: 'fonts/',
+          publicPath: '/build/fonts/',
+        },
+      },
+    ],
+  })
+  
+  /** images */
+  .copyFiles({
+    from: './assets/images',
+    to: 'images/[path][name].[ext]'
+  })
 
-    // will require an extra script tag for runtime.js
-    // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+  // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+  .splitEntryChunks()
 
-    /*
-     * FEATURE CONFIG
-     *
-     * Enable & configure other features below. For a full
-     * list of features, see:
-     * https://symfony.com/doc/current/frontend.html#adding-more-features
-     */
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
-    .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
+  // will require an extra script tag for runtime.js
+  // but, you probably want this, unless you're building a single-page app
+  .enableSingleRuntimeChunk()
 
-    // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+  /*
+    * FEATURE CONFIG
+    *
+    * Enable & configure other features below. For a full
+    * list of features, see:
+    * https://symfony.com/doc/current/frontend.html#adding-more-features
+  */
+  .cleanupOutputBeforeBuild()
+  .enableBuildNotifications()
+  .enableSourceMaps(!Encore.isProduction())
+  // enables hashed filenames (e.g. app.abc123.css)
+  .enableVersioning(Encore.isProduction())
 
-    // enables and configure @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.38';
-    })
+  // configure Babel
+  // .configureBabel((config) => {
+  //     config.plugins.push('@babel/a-babel-plugin');
+  // })
 
-    // enables Sass/SCSS support
-    //.enableSassLoader()
+  // enables and configure @babel/preset-env polyfills
+  .configureBabelPresetEnv((config) => {
+    config.useBuiltIns = 'usage';
+    config.corejs = '3.38';
+  })
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+  // enables Sass/SCSS support
+  //.enableSassLoader()
 
-    // uncomment if you use React
-    //.enableReactPreset()
+  // uncomment if you use TypeScript
+  //.enableTypeScriptLoader()
 
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+  // uncomment if you use React
+  //.enableReactPreset()
 
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+  // uncomment to get integrity="..." attributes on your script & link tags
+  // requires WebpackEncoreBundle 1.4 or higher
+  //.enableIntegrityHashes(Encore.isProduction())
+
+  // uncomment if you're having problems with a jQuery plugin
+  //.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

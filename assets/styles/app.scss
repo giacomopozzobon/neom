@@ -1,0 +1,31 @@
+
+// Sovrascrivi le variabili di Bootstrap
+$font-family-sans-serif: 'Arial', sans-serif; // Font moderno e senza grazie
+$body-font-family: $font-family-sans-serif;
+$body-color: #000; // Colore del testo principale
+$body-bg: #fff; // Sfondo del corpo
+$primary: #000; // Colore nero per i pulsanti principali
+$secondary: #e5d1ae; // Colore sabbia per i dettagli
+
+// Margini e padding ampi
+$spacer: 2rem;
+
+
+@import 'bootstrap/scss/bootstrap';  // Bootstrap
+// @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+.text-muted {
+  color: #8c8c8c !important; 
+}
+
+.btn {
+  border-radius: 0rem;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0rem;
+}
+
+.nav-pills .nav-link.active {
+  background-color: $primary;
+}

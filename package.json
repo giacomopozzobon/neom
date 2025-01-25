@@ -24,10 +24,15 @@
   "homepage": "https://github.com/giacomopozzobon/neom#readme",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-notifier": "^1.15.0"

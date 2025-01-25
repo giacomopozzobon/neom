@@ -1,13 +1,21 @@
-<nav class="bg-light border-end vh-100 p-3">
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <a href="/" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item">
-      <a href="/orders" class="nav-link">Ordini</a>
-    </li>
-    <li class="nav-item">
-      <a href="/products" class="nav-link">Prodotti</a>
-    </li>
-  </ul>
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="height: 100vh; padding-top: 40px !important; border-right: 1px solid #ccc;">
+  <div class="position-sticky pt-3">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{{ path('neom_home') }}" class="nav-link {% if app.request.attributes.get('_route') == 'neom_home' %}active{% endif %}">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('order_index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'order_index' %}active{% endif %}">
+          Orders
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('product_index') }}" class="nav-link {% if app.request.attributes.get('_route') == 'product_index' %}active{% endif %}">
+          Products
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>

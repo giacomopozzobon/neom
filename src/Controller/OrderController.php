@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class OrderController extends AbstractController
 {
-  #[Route('/order', name: 'app_order')]
+  #[Route('/order', name: 'order_index')]
   public function index(EntityManagerInterface $em): Response
   {
     $orders = $em->getRepository(Order::class)->findAll();
