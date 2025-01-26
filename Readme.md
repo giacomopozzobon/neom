@@ -109,16 +109,24 @@ Per accedere al database esegui:
     ```
 
 ## Esecuzione dei Test
-Al momento, non sono stati implementati test nel progetto. Tuttavia, se necessario, puoi configurare PHPUnit per eseguire test unitari o di integrazione.
-
-In futuro, eseguirai i test con il comando:
+Per eseguire i test è stato configurato PHPUnit, con cui potrai avviare tutta la suite insieme, tramite il comando:
 
    ```bash
+   docker-compose exec php bash
    php bin/phpunit
    ```
+oppure lancia i test singoli, come ad esempio:
+
+   ```bash
+   docker-compose exec php bash
+   bin/phpunit tests/Entity/OrderTest.php
+   bin/phpunit tests/Entity/ProductTest.php
+   ```
+
 
 ## Docker
 Il progetto è già configurato per l'esecuzione tramite Docker. Puoi usare Docker Compose per eseguire i vari servizi come PostgreSQL, Mailpit e PHP.
 
-1. **docker-compose.yml:** Configura i servizi di PostgreSQL, PHP e Mailpit.
-2. **docker-compose.override.yml:** Configura porte specifiche per i servizi, come il database PostgreSQL sulla porta 5432 e il mailer Mailpit sulle porte 1025 e 8025.
+1. **docker-compose.yml:** Configurazione di PostgreSQL
+2. **docker-compose.override.yml:** Configura porte specifiche per i servizi, come il database PostgreSQL sulla porta 5432 e il mailer Mailpit sulle porte 1025 e 8025. Contiene la configurazione di Mailpit e PHP.
+3. **Dockerfile:** Installa PHP, PostgreSQL, node e tutte le librerie necessarie a far funzionare correttamente il progetto.
