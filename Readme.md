@@ -79,26 +79,28 @@ Assicurati prima di aver eseguito:
 I due script creati per avviare/fermare il progetto sono:
 - **neom.sh** : Avvia l'applicazione (docker-compose up -d && docker-compose exec php npm run dev)
 - **neom-stop.sh** : Blocca l'applicazione (docker-compose down)
-Assicurati di renderli eseguibili:
+
+
+- Assicurati di renderli eseguibili:
 
     ```bash
     chmod +x neom.sh
     chmod +x neom-stop.sh
     ```
 
-Prova ad avviare e fermare l'applicativo con i seguenti comandi:
+- Prova ad avviare e fermare l'applicativo con i seguenti comandi:
 
     ```bash
     ./neom.sh
     ./neom-stop.sh
     ```
 
-Puoi accedere all'applicazione tramite il tuo browser:
+- Puoi accedere all'applicazione tramite il tuo browser:
 
    ```bash
    http://localhost:8000
    ```
-Il progetto sarà in esecuzione sul server PHP all'interno del container.
+- Il progetto sarà in esecuzione sul server PHP all'interno del container.
 
 7. **Accedi al database:**
 Per accedere al database esegui:
