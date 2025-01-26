@@ -4,6 +4,8 @@ FROM php:8.2-fpm
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     curl \
+    libzip-dev \
+    git \
     && docker-php-ext-install pdo_pgsql pgsql \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
