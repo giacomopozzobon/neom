@@ -100,6 +100,14 @@ Puoi accedere all'applicazione tramite il tuo browser:
    ```
 Il progetto sarà in esecuzione sul server PHP all'interno del container.
 
+7. **Accedi al database:**
+Per accedere al database esegui:
+
+    ```bash
+    docker exec -it neom-postgres-1 bash
+    psql -U neom_user -d neom
+    ```
+
 ## Esecuzione dei Test
 Al momento, non sono stati implementati test nel progetto. Tuttavia, se necessario, puoi configurare PHPUnit per eseguire test unitari o di integrazione.
 

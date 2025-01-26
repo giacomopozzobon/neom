@@ -21,8 +21,6 @@ Encore
     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
   */
   .addEntry('app', './assets/app.js')
-  .enableSassLoader()
-  .enablePostCssLoader()
 
   // Aggiungi questa regola per i font se non l'hai già fatto
   .addRule({
@@ -77,7 +75,8 @@ Encore
   })
 
   // enables Sass/SCSS support
-  //.enableSassLoader()
+  .enableSassLoader()
+  .enablePostCssLoader()
 
   // uncomment if you use TypeScript
   //.enableTypeScriptLoader()
@@ -90,7 +89,7 @@ Encore
   //.enableIntegrityHashes(Encore.isProduction())
 
   // uncomment if you're having problems with a jQuery plugin
-  //.autoProvidejQuery()
+  .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

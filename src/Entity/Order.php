@@ -73,53 +73,40 @@ class Order
   }
 
 
+
+
   /** Associations */
 
 
-  #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'orders')]
-  private Collection $products;
+  #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderProduct::class, cascade: ['persist', 'remove'])]
+  private Collection $orderProducts;
 
   public function __construct()
   {
-    $this->products = new ArrayCollection();
+    $this->orderProducts = new ArrayCollection();
   }
 
-  /**
-   * Metodo per ottenere i prodotti associati all'ordine.
-   *
-   * @return Collection
-   */
-  public function getProducts(): Collection
+  public function getOrderProducts(): Collection
   {
-    return $this->products;
+    return $this->orderProducts;
   }
 
-  /**
-   * Metodo per aggiungere un prodotto all'ordine.
-   *
-   * @param Product $product
-   * @return static
-   */
-  public function addProduct(Product $product): self
+  public function addOrderProduct(OrderProduct $orderProduct): self
   {
-    if (!$this->products->contains($product)) {
-      $this->products->add($product);
-      $product->addOrder($this);  // Aggiunge l'ordine al prodotto (relazione inversa)
+    if (!$this->orderProducts->contains($orderProduct)) {
+      $this->orderProducts->add($orderProduct);
+      $orderProduct->setOrder($this);
     }
 
     return $this;
   }
 
-  /**
-   * Metodo per rimuovere un prodotto dall'ordine.
-   *
-   * @param Product $product
-   * @return static
-   */
-  public function removeProduct(Product $product): self
+  public function removeOrderProduct(OrderProduct $orderProduct): self
   {
-    if ($this->products->removeElement($product)) {
-      $product->removeOrder($this);  // Rimuove l'ordine dal prodotto (relazione inversa)
+    if ($this->orderProducts->removeElement($orderProduct)) {
+      if ($orderProduct->getOrder() === $this) {
+        $orderProduct->setOrder(null);
+      }
     }
 
     return $this;

@@ -1,34 +1,29 @@
 services:
-  ###> doctrine/doctrine-bundle ###
   postgres:
     ports:
-      - "5432"
-  ###< doctrine/doctrine-bundle ###
+      - "5432:5432"
 
-  ###> symfony/mailer ###
   mailer:
     image: axllent/mailpit
     ports:
-      - "1025"
-      - "8025"
+      - "1025:1025"
+      - "8025:8025"
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
-  ###< symfony/mailer ###
 
   php:
     build:
       context: .
       dockerfile: Dockerfile
-    command: "php -S 0.0.0.0:8000 -t public"
+    command: sh -c "composer install && php -S 0.0.0.0:8000 -t public"
     ports:
       - "8000:8000"
     volumes:
-      - ~/neom:/var/www/html:rw,cached  # Volume per la sincronizzazione del progetto locale con il container
-
-    # Installazione delle estensioni PHP e configurazione per PostgreSQL
+      - ${PWD}:/var/www/html:rw,cached
     environment:
-      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1 # Evita il recompilamento continuo
-    working_dir: /var/www/html  # Directory di lavoro all'interno del container
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+    working_dir: /var/www/html
     depends_on:
-      - postgres  # Il servizio PHP dipende dal database, assicurandosi che il database sia disponibile prima di avviare il PHP
+      - postgres
+      - mailer

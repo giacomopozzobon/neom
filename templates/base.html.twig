@@ -8,10 +8,6 @@
     {% block stylesheets %}
       <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     {% endblock %}
-
-    {% block javascripts %}
-      <script src="{{ asset('build/app.js') }}"></script>
-    {% endblock %}
   </head>  
 
   <body>
@@ -49,40 +45,11 @@
 
       </div>
     </div>
+
+
+    {% block javascripts %}
+      <script src="{{ asset('build/app.js') }}" defer></script>
+    {% endblock %}
+
   </body>
-
-
-
-
-
-
-
-
-
-  {# <body>
-
-    <div class="container">
-
-        
-        {% include '_header.html.twig' %}
-
-
-
-        <!-- Main -->
-        <main class="d-flex" style="height: 100vh;">
-
-          <!-- Menu Laterale -->
-          {% include '_sidebar.html.twig' %}
-
-
-          <!-- Corpo principale -->
-          <div class="flex-grow-1 d-flex flex-column p-4 bg-light">
-            {% block body %}{% endblock %}
-          </div>
-
-        </main>
-    
-    
-    </div>
-  </body> #}
 </html>

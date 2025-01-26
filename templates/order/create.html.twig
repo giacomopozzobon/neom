@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Order{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <h1 class="mb-4">Create a New Order</h1>
+
+  <p> 
+    Debug
+    </br>
+    {% for product in products %}
+      {{ product.id }}, {{ product.name }}, {{ product.price }}, {{ product.stock }}
+    {% endfor %}
+  </p>
+
+  {{ form_start(form) }}
+
+    <div class="mb-3">
+      {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter order name'}}) }}
+    </div>
+    <div class="mb-3">
+      {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter order description'}}) }}
+    </div>
+    <div class="mb-3">
+      {{ form_row(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Enter order date'}}) }}
+    </div>
+
+    <div class="mb-3">
+      <h2>Aggiungi Prodotto</h2>
+      <div>
+        {% for orderProductForm in form.orderProducts %}
+          <div class="order-product">
+            {{ form_row(orderProductForm.product) }}
+            {{ form_row(orderProductForm.quantity) }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  {{ form_end(form) }}
+
+  <a href="{{ path('order_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+{% endblock %}

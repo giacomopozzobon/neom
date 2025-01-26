@@ -33,6 +33,7 @@
               <th>ID</th>
               <th>Name</th>
               <th>Price</th>
+              <th>Stock</th>
               <th></th>
             </tr>
           </thead>
@@ -42,6 +43,7 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>€ {{ product.price }}</td>
+                <td>{{ product.stock }}</td>
                 <td class="text-center">
                   <a href="{{ path('product_edit', { id: product.id }) }}" class="btn btn-sm btn-primary">
                     <i class="bi bi-pencil-square"></i> Edit

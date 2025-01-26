@@ -27,86 +27,89 @@ class Product
   #[ORM\Column]
   private ?float $price = null;
 
+  #[ORM\Column(type: 'integer', options: ['default' => 0])]
+  private ?int $stock = null;
+
 
   /** Getters & Setters */
 
 
   public function getId(): ?int
   {
-      return $this->id;
+    return $this->id;
   }
 
   public function getName(): ?string
   {
-      return $this->name;
+    return $this->name;
   }
 
   public function getPrice(): ?float
   {
-      return $this->price;
+    return $this->price;
+  }
+
+  public function getStock(): ?int
+  {
+    return $this->stock;
   }
 
   public function setName(string $name): static
   {
-      $this->name = $name;
+    $this->name = $name;
 
-      return $this;
+    return $this;
   }
 
   public function setPrice(float $price): static
   {
-      $this->price = $price;
+    $this->price = $price;
 
-      return $this;
+    return $this;
+  }
+
+  public function setStock(int $stock): static
+  {
+    $this->stock = $stock;
+
+    return $this;
   }
 
   
   /** Associations */
 
 
-  #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'products')]
-  private Collection $orders;
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderProduct::class)]
+  private Collection $orderProducts;
 
   public function __construct()
   {
-      $this->orders = new ArrayCollection();
+    $this->orderProducts = new ArrayCollection();
   }
 
-  /**
-   * Metodo per ottenere gli ordini associati al prodotto.
-   *
-   * @return Collection
-   */
-  public function getOrders(): Collection
+  public function getOrderProducts(): Collection
   {
-      return $this->orders;
+    return $this->orderProducts;
   }
 
-  /**
-   * Metodo per aggiungere un ordine al prodotto.
-   *
-   * @param Order $order
-   * @return static
-   */
-  public function addOrder(Order $order): self
+  public function addOrderProduct(OrderProduct $orderProduct): self
   {
-      if (!$this->orders->contains($order)) {
-          $this->orders->add($order);
+    if (!$this->orderProducts->contains($orderProduct)) {
+      $this->orderProducts->add($orderProduct);
+      $orderProduct->setProduct($this);
+    }
+
+    return $this;
+  }
+
+  public function removeOrderProduct(OrderProduct $orderProduct): self
+  {
+    if ($this->orderProducts->removeElement($orderProduct)) {
+      if ($orderProduct->getProduct() === $this) {
+        $orderProduct->setProduct(null);
       }
+    }
 
-      return $this;
-  }
-
-  /**
-   * Metodo per rimuovere un ordine dal prodotto.
-   *
-   * @param Order $order
-   * @return static
-   */
-  public function removeOrder(Order $order): self
-  {
-      $this->orders->removeElement($order);
-
-      return $this;
+    return $this;
   }
 }

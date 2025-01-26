@@ -4,16 +4,19 @@
 
 {% block body %}
 <div class="container mt-5">
-  <h1 class="mb-4">Edit Product: {{ product.name }}</h1>
+  <h1 class="mb-4">Edit Product</h1>
 
   {{ form_start(form) }}
     <div class="mb-3">
-        {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter product name'}}) }}
+      {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter product name'}}) }}
     </div>
     <div class="mb-3">
-        {{ form_row(form.price, {'attr': {'class': 'form-control', 'placeholder': 'Enter product price'}}) }}
+      {{ form_row(form.price, {'attr': {'class': 'form-control', 'placeholder': 'Enter product price'}}) }}
     </div>
-    <button type="submit" class="btn btn-primary">Update Product</button>
+    <div class="mb-3">
+      {{ form_row(form.stock, {'attr': {'class': 'form-control', 'placeholder': 'Enter product stock'}}) }}
+    </div>
+    {{ form_row(form.save) }}
   {{ form_end(form) }}
 
   <a href="{{ path('product_index') }}" class="btn btn-secondary mt-3">Back to List</a>

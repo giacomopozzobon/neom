@@ -23,13 +23,16 @@
   },
   "homepage": "https://github.com/giacomopozzobon/neom#readme",
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.11.8",
     "@symfony/webpack-encore": "^5.0.1",
+    "@types/bootstrap": "^5.2.10",
+    "@types/jquery": "^3.5.32",
     "file-loader": "^6.2.0",
+    "jquery": "^3.7.1",
     "postcss-loader": "^8.1.1",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.4",
