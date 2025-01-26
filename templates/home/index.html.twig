@@ -22,23 +22,36 @@
 </ul>
 
 <pre>
-curl -X GET http://localhost:8000/api/products
 
-curl -X POST http://localhost:8000/api/products -H "Content-Type: application/json" -d '{"name": "Bambole", "price": 19.99, "stock": 100}'
+    <b>API Endpoints:</b>
 
-curl -X PUT http://localhost:8000/api/products/9 -H "Content-Type: application/json" -d '{"name": "Bambole Deluxe", "price": 25.99, "stock": 120}'
+    Orders:
+    <small>
+        curl -X GET http://localhost:8000/api/orders
+        curl -X GET http://localhost:8000/api/orders/1
+        curl -X POST http://localhost:8000/api/orders -H "Content-Type: application/json" -d '{ "name": "John Doe", "date": "2025-01-26", "products": [ { "id": 9, "quantity": 2 }, { "id": 10, "quantity": 1 } ] }'
+        curl -X DELETE http://localhost:8000/api/orders/1
+    </small>
 
-curl -X POST http://localhost:8000/api/orders -H "Content-Type: application/json" -d '{ "name": "John Doe", "date": "2025-01-26", "products": [ { "id": 9, "quantity": 2 }, { "id": 10, "quantity": 1 } ] }'
+    Products:
+    <small>
+        curl -X GET http://localhost:8000/api/products
+        curl -X POST http://localhost:8000/api/products -H "Content-Type: application/json" -d '{"name": "Bambole", "price": 19.99, "stock": 100}'
+        curl -X PUT http://localhost:8000/api/products/1 -H "Content-Type: application/json" -d '{"name": "Bambole Deluxe", "price": 25.99, "stock": 120}'
+        curl -X DELETE http://localhost:8000/api/products/1
+    </small>
 </pre>
 
 <p><strong>Stock Management:</strong> The stock is correctly managed. If an attempt is made to create an order with a quantity that exceeds the available stock, the API will return an error response. For example, trying to place an order with a product quantity greater than the available stock will result in an error message indicating insufficient stock.</p>
 
 <hr/>
 
-<h2>Coming Soon</h2>
-<p>The following features are in progress and will be available soon:</p>
+<h2>Errors</h2>
+<p><i>Note personali</i></p>
 <ul>
-    <li><strong>Edit Orders with Product Addition:</strong> Enhance the order editing functionality to allow adding products to existing orders.</li>
+    <li><strong>Bootstrap:</strong> Non sono riuscito a configurare correttamente bootstrap perchè non riesco a usare bootstrap.js e inoltre ci sono molti warning nel build di docker dopo aver customizzato lo stile.</li>
+    <li><strong>Form:</strong> Non sono riuscito a mostrare correttamente il form per aggiungere un prodotto a un ordine.</li>
+    <li><strong>UI:</strong> Non sono riuscito a implementare modal, ricerche e filtri sulle tabelle a causa dell'assenza di javascript</li>
 </ul>
 
 <hr/>

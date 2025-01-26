@@ -56,7 +56,6 @@ class OrderApiController extends AbstractController
         ];
       }
 
-      // Aggiungi l'ordine e i prodotti all'array di risposta
       $data[] = [
         'id' => $order->getId(),
         'name' => $order->getName(),
@@ -65,7 +64,6 @@ class OrderApiController extends AbstractController
       ];
     }
 
-    // Restituisci la risposta JSON con i dati formattati
     return $this->json($data);
   }
 
@@ -158,7 +156,7 @@ class OrderApiController extends AbstractController
       $em->flush();
       $em->commit();
 
-      return new JsonResponse($order, JsonResponse::HTTP_CREATED);
+      return new JsonResponse(['message' => 'Order created successfully'], JsonResponse::HTTP_CREATED);
     } catch (\Exception $e) {
       // If something goes wrong, rollback the transaction
       $em->rollback();
@@ -190,15 +188,12 @@ class OrderApiController extends AbstractController
   #[Route('/api/orders/{id}', name: 'api_order_show', methods: ['GET'])]
   public function show(int $id, EntityManagerInterface $em): JsonResponse
   {
-      // Recupera l'ordine tramite ID
       $order = $em->getRepository(Order::class)->find($id);
 
-      // Se l'ordine non esiste, restituisci un errore
       if (!$order) {
         return new JsonResponse(['error' => 'Order not found'], JsonResponse::HTTP_NOT_FOUND);
       }
 
-      // Crea un array per i prodotti dell'ordine
       $productsData = [];
       foreach ($order->getOrderProducts() as $orderProduct) {
         $productsData[] = [
@@ -208,7 +203,6 @@ class OrderApiController extends AbstractController
         ];
       }
 
-      // Prepara la risposta con i dati dell'ordine e i suoi prodotti
       $data = [
         'id' => $order->getId(),
         'name' => $order->getName(),
@@ -216,7 +210,41 @@ class OrderApiController extends AbstractController
         'products' => $productsData,
       ];
 
-      // Restituisci la risposta JSON con i dati formattati
       return $this->json($data);
+  }
+
+
+  /**
+   *
+   * Deletes an existing order by its ID. If the order is not found,
+   * a 404 error response will be returned.
+   *
+   *
+   * Example request:
+   * DELETE /api/orders/1
+   *
+   * Example response (on success):
+   * {
+   *     "message": "Order deleted successfully"
+   * }
+   *
+   * Example response (on failure):
+   * {
+   *     "error": "Order not found"
+   * }
+   */
+  #[Route('/api/orders/{id}', name: 'api_order_delete', methods: ['DELETE'])]
+  public function delete(int $id, EntityManagerInterface $em): JsonResponse
+  {
+    $order = $em->getRepository(Order::class)->find($id);
+
+    if (!$order) {
+      return new JsonResponse(['error' => 'Order not found'], JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    $em->remove($order);
+    $em->flush();
+
+    return new JsonResponse(['message' => 'Order deleted successfully'], JsonResponse::HTTP_OK);
   }
 }

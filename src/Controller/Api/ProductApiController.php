@@ -207,6 +207,6 @@ class ProductApiController extends AbstractController
 
     $em->flush();
 
-    return new JsonResponse($product, JsonResponse::HTTP_OK);
+    return new JsonResponse(['message' => 'Product updated successfully'], JsonResponse::HTTP_OK);
   }
 }
