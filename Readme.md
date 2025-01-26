@@ -7,7 +7,6 @@
 - **Docker**: Containerizzazione dell'ambiente di sviluppo per garantire coerenza.
 - **PostgreSQL**: Database relazionale per gestire ordini e prodotti.
 - **Doctrine**: ORM per la gestione dei dati nel database.
-- **Mailer (Mailpit)**: Per testare l'invio di email in un ambiente di sviluppo.
 
 ## Requisiti
 - Docker
