@@ -7,23 +7,41 @@
 
 
 
-<h1 class="mb-3" style="font-size: 4.5em; line-height: 60px;">NEOM - YOUR NEW <br/>ORDER MANAGEMENT <br/>TOOL</h1>
+<h1>NEOM - YOUR NEW ORDER MANAGEMENT TOOL</h1>
 <p>Easy and clean order management tool. Still work in progress</p>
 
 <hr/>
 
-<h2>TO-DO</h2>
+<h2>Features</h2>
+<p>Currently, the following features are available:</p>
 <ul>
-    <li>Edit an order adding products</li>
+    <li><strong>View Product List:</strong> Retrieve and display a list of all available products.</li>
+    <li><strong>View Order List:</strong> Access a list of all orders placed in the system.</li>
+    <li><strong>Create, Edit, and Delete Products:</strong> Manage products by adding, updating, or deleting them through the user interface and API.</li>
+    <li><strong>Test API Endpoints:</strong> Interact with the backend via API using the following endpoints:</li>
+</ul>
+
+<pre>
+curl -X GET http://localhost:8000/api/products
+
+curl -X POST http://localhost:8000/api/products -H "Content-Type: application/json" -d '{"name": "Bambole", "price": 19.99, "stock": 100}'
+
+curl -X PUT http://localhost:8000/api/products/9 -H "Content-Type: application/json" -d '{"name": "Bambole Deluxe", "price": 25.99, "stock": 120}'
+
+curl -X POST http://localhost:8000/api/orders -H "Content-Type: application/json" -d '{ "name": "John Doe", "date": "2025-01-26", "products": [ { "id": 9, "quantity": 2 }, { "id": 10, "quantity": 1 } ] }'
+</pre>
+
+<p><strong>Stock Management:</strong> The stock is correctly managed. If an attempt is made to create an order with a quantity that exceeds the available stock, the API will return an error response. For example, trying to place an order with a product quantity greater than the available stock will result in an error message indicating insufficient stock.</p>
+
+<hr/>
+
+<h2>Coming Soon</h2>
+<p>The following features are in progress and will be available soon:</p>
+<ul>
+    <li><strong>Edit Orders with Product Addition:</strong> Enhance the order editing functionality to allow adding products to existing orders.</li>
 </ul>
 
 <hr/>
 
-<h2>Features</h2>
-<ul>
-    <li>View product list</li>
-    <li>View order list</li>
-    <li>Create / Edit / Delete a product</li>
-</ul>
 
 {% endblock %}
